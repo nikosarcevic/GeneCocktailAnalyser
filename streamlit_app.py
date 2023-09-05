@@ -1,11 +1,9 @@
-# streamlit_app.py
-
 import streamlit as st
 import pandas as pd
 import os
 import tempfile
 import warnings
-from gene_cocktail_analyser import GeneCocktailAnalyser
+from gca_streamlit import GeneCocktailAnalyser
 
 # Suppress warnings
 warnings.filterwarnings("ignore")
@@ -14,14 +12,11 @@ warnings.filterwarnings("ignore")
 st.title("Gene Cocktail Analyser")
 
 uploaded_cocktail = st.file_uploader("Upload Cocktail File (CSV)", type=["csv"])
-cocktail_filename = uploaded_cocktail.name if uploaded_cocktail else None
-
 uploaded_filters = st.file_uploader("Upload Filters File (CSV)", type=["csv"])
-filters_filename = uploaded_filters.name if uploaded_filters else None
 
 if uploaded_cocktail and uploaded_filters:
-    with tempfile.TemporaryDirectory() as tmpdirname:
 
+    with tempfile.TemporaryDirectory() as tmpdirname:
         # Set the current working directory to the temp directory
         os.chdir(tmpdirname)
 
@@ -36,21 +31,24 @@ if uploaded_cocktail and uploaded_filters:
         temp_filters = tempfile.NamedTemporaryFile(delete=False, suffix='.csv')
         filters_df.to_csv(temp_filters.name, index=False)
 
-        # Now pass the temporary file names to the GeneCocktailAnalyser
         analyser = GeneCocktailAnalyser(temp_cocktail.name, temp_filters.name)
         analyser.process_data()
         st.write("Uploaded files processed!")
 
-        # Display results and plot visualizations
-        if st.button("Display Re    sults"):
+        if st.button("Display Results"):
             st.write("Displaying results...")
-            analyser.display_results()
+            # Update display_results to return results
+            results = analyser.display_results()
+            for row in results:
+                st.write(" | ".join(str(item) for item in row))
 
         if st.button("Plot Visualizations"):
             st.write("Plotting visualizations...")
-            analyser.plot_visualizations()
-            st.write("Visualizations plotted!")
+            # Assuming plot_visualizations will create a plot using matplotlib or similar
+            # Update plot_visualizations to return the created figure
+            fig = analyser.plot_visualizations()
+            st.pyplot(fig)
 
-        # Once done with the analyser, delete the temporary files
+        # Cleanup temporary files
         os.remove(temp_cocktail.name)
         os.remove(temp_filters.name)

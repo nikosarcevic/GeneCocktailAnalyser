@@ -209,9 +209,6 @@ class GeneCocktailAnalyser:
         for row in report_data:
             print(" | ".join(format(str(item), f"{length}s") for item, length in zip(row, max_lengths)))
 
-        # Saving to TXT file
-        consolidated_filename = f"results/{self.dataset_name}_consolidated_report.txt"
-        self.save_to_file(report_data, headers, consolidated_filename)
 
     def plot_visualizations(self):
         self.plot_summary_data()
@@ -249,11 +246,6 @@ class GeneCocktailAnalyser:
         plt.title(f'{self.dataset_name} Summary Chart')
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         plt.tight_layout()
-
-        # Save donut chart
-        donut_chart_filename = f"results/plots/{self.dataset_name}_summary_chart"
-        plt.savefig(donut_chart_filename + ".pdf", dpi=300)
-        plt.savefig(donut_chart_filename + ".png", dpi=300)
         plt.show()
 
     def plot_frequency_of_matches(self, include_codons=False):
@@ -304,12 +296,6 @@ class GeneCocktailAnalyser:
 
         plt.tight_layout()
         plt.grid(axis='y', linestyle='--', alpha=0.6)
-
-        # Save histogram plot
-        histogram_filename = f"results/plots/{self.dataset_name}_histogram"
-        plt.savefig(histogram_filename + ".png", dpi=300)
-        plt.savefig(histogram_filename + ".pdf", dpi=300)
-
         plt.grid(False)  # Disable grids
         plt.show()
 
@@ -356,8 +342,4 @@ class GeneCocktailAnalyser:
         heatmap.set_xlabel("Filters", fontsize=15)
         heatmap.set_ylabel("Filters", fontsize=15)
 
-        # Save heatmap plot
-        heatmap_filename = f"results/plots/{self.dataset_name}_heatmap"
-        plt.savefig(heatmap_filename + ".png", dpi=300)
-        plt.savefig(heatmap_filename + ".pdf", dpi=300)
         plt.show()
