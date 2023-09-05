@@ -5,6 +5,9 @@ import tempfile
 import warnings
 from gca_streamlit import GeneCocktailAnalyser
 
+# Set the page layout to wide
+st.set_page_config(layout="wide")
+
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
