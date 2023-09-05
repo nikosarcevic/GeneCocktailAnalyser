@@ -38,8 +38,7 @@ if uploaded_cocktail and uploaded_filters:
         if st.button("Display Results"):
             st.write("Displaying results...")
             results = analyser.display_results()
-            for line in results:
-                st.write(line)
+            st.write("\n".join(results))
 
         if st.button("Plot Visualizations"):
             st.write("Plotting visualizations...")
