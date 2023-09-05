@@ -73,10 +73,10 @@ if st.sidebar.button("Analysis"):
             os.remove(temp_cocktail.name)
             os.remove(temp_filters.name)
 
-    # Intro
-    if st.sidebar.button("Intro"):
-        st.write("This is the introduction to the Gene Cocktail Analyser.")
+# Intro
+if st.sidebar.button("Intro"):
+    st.write("This is the introduction to the Gene Cocktail Analyser.")
 
-    # About
-    if st.sidebar.button("About"):
-        st.write("Information about the Gene Cocktail Analyser and its purpose.")
+# About
+if st.sidebar.button("About"):
+    st.write("Information about the Gene Cocktail Analyser and its purpose.")
