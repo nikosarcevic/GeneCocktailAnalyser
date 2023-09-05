@@ -1,4 +1,3 @@
-from itertools import combinations
 import matplotlib.pyplot as plt
 import natsort
 import numpy as np
@@ -213,7 +212,7 @@ class GeneCocktailAnalyser:
         consolidated_filename = f"results/{self.dataset_name}_consolidated_report.txt"
         self.save_to_file(report_data, headers, consolidated_filename)
 
-    def plot_visualizations(self):
+    def plot_visualisations(self):
         self.plot_summary_data()
         self.plot_frequency_of_matches()
         self.plot_heatmap()
@@ -246,9 +245,9 @@ class GeneCocktailAnalyser:
         plt.gca().add_artist(
             plt.Circle((0, 0), 0.70, color='white'))  # Draw a white circle at the center to create the donut hole
 
-        plt.title(f'{self.dataset_name} Summary Chart')
+        plt.title(f'{self.dataset_name} Summary Chart', pad=25, fontsize=18)
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.tight_layout()
+        #plt.tight_layout()
 
         # Save donut chart
         donut_chart_filename = f"results/plots/{self.dataset_name}_summary_chart"
@@ -302,14 +301,13 @@ class GeneCocktailAnalyser:
         plt.gca().tick_params(axis='y', direction='in', which='both', length=4)
         plt.gca().tick_params(axis='x', which='both', bottom=False)  # This line removes the x-axis ticks
 
-        plt.tight_layout()
+        #plt.tight_layout()
         plt.grid(axis='y', linestyle='--', alpha=0.6)
 
         # Save histogram plot
         histogram_filename = f"results/plots/{self.dataset_name}_histogram"
         plt.savefig(histogram_filename + ".png", dpi=300)
         plt.savefig(histogram_filename + ".pdf", dpi=300)
-
         plt.grid(False)  # Disable grids
         plt.show()
 
@@ -325,6 +323,15 @@ class GeneCocktailAnalyser:
         for filters in multiple_filter_ids.values():
             all_filters.update(filters)
         all_filters = sorted(list(all_filters))
+
+        # Check if there are no filters
+        if not all_filters:
+            plt.figure(figsize=(10, 8))
+            plt.text(0.5, 0.5, 'Matrix is empty, data is 0', horizontalalignment='center',
+                     verticalalignment='center', fontsize=15)
+            plt.axis('off')  # to turn off the axis
+            plt.show()
+            return
 
         # Create an empty matrix to store co-occurrences
         matrix = np.zeros((len(all_filters), len(all_filters)))
