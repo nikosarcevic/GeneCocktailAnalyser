@@ -1,0 +1,65 @@
+Section                               Description                                       Value        Fraction
+------------------------------------  ------------------------------------------------  -----------  ----------
+Summary                               Total Cocktail Samples                            4627         -
+Summary                               Cocktail samples (after removing NaNs)            4627         100%
+Summary                               Samples with no filter match                      1457         31.49%
+Summary                               Samples with one filter match                     3170         68.51%
+Summary                               Samples with two or more filter matches           12           0.26%
+
+Category                              Description: ID | Mutation | Mutation Codon       Value        Fraction
+--------                              -------------------------------------------       -----        --------
+Filter Match                          Ref1 | KRASG12D | GAT                             402          8.69%
+Filter Match                          Ref2 | KRASG12WT | GGT                            369          7.97%
+Filter Match                          Ref3 | KRASQ61L | CTA                             440          9.51%
+Filter Match                          Ref4 | KRASQ61WT | CAA                            471          10.18%
+Filter Match                          Ref5 | HRASG12D | GAT                             135          2.92%
+Filter Match                          Ref6 | HRASG12WT | GGA                            99           2.14%
+Filter Match                          Ref7 | HRASQ61L | CTA                             176          3.80%
+Filter Match                          Ref8 | HRASQ61WT | CAA                            223          4.82%
+Filter Match                          Ref9 | NRASG12D | GAT                             46           0.99%
+Filter Match                          Ref10 | NRASG12WT | GGT                           77           1.66%
+Filter Match                          Ref11 | NRASQ61L | CTA                            408          8.82%
+Filter Match                          Ref12 | NRASQ61WT | CAA                           365          7.89%
+Total Filter Matches                                                                    3211
+
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 16    -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 148   -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 224   -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 298   -
+Multiple Filter Matches per Sequence  Ref12 | NRASQ61WT | CAA, Ref9 | NRASG12D | GAT    index: 426   -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 524   -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 615   -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 726   -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref7 | HRASQ61L | CTA      index: 798   -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 857   -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 983   -
+Multiple Filter Matches per Sequence  Ref12 | NRASQ61WT | CAA, Ref9 | NRASG12D | GAT    index: 998   -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 1170  -
+Multiple Filter Matches per Sequence  Ref12 | NRASQ61WT | CAA, Ref9 | NRASG12D | GAT    index: 1263  -
+Multiple Filter Matches per Sequence  Ref10 | NRASG12WT | GGT, Ref12 | NRASQ61WT | CAA  index: 1292  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 1899  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 2005  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 2171  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 2497  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 2515  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 2647  -
+Multiple Filter Matches per Sequence  Ref12 | NRASQ61WT | CAA, Ref9 | NRASG12D | GAT    index: 2739  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 2884  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 2954  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 3070  -
+Multiple Filter Matches per Sequence  Ref10 | NRASG12WT | GGT, Ref11 | NRASQ61L | CTA   index: 3195  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 3199  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 3216  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref7 | HRASQ61L | CTA      index: 3535  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 3612  -
+Multiple Filter Matches per Sequence  Ref1 | KRASG12D | GAT, Ref2 | KRASG12WT | GGT     index: 3659  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 3667  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref7 | HRASQ61L | CTA      index: 3728  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref7 | HRASQ61L | CTA      index: 3809  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 4013  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref7 | HRASQ61L | CTA     index: 4065  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 4177  -
+Multiple Filter Matches per Sequence  Ref10 | NRASG12WT | GGT, Ref8 | HRASQ61WT | CAA   index: 4260  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref8 | HRASQ61WT | CAA     index: 4368  -
+Multiple Filter Matches per Sequence  Ref6 | HRASG12WT | GGA, Ref8 | HRASQ61WT | CAA    index: 4544  -
+Multiple Filter Matches per Sequence  Ref5 | HRASG12D | GAT, Ref7 | HRASQ61L | CTA      index: 4597  -
