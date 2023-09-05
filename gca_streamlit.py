@@ -1,4 +1,3 @@
-from itertools import combinations
 import matplotlib.pyplot as plt
 import natsort
 import numpy as np
@@ -200,14 +199,21 @@ class GeneCocktailAnalyser:
 
         report_data.extend(multiple_filter_ids_data)
 
-        # Print the formatted table
-        print(f"Unified Gene Cocktail Report: {self.dataset_name}\n")
+        # Prepare the results for Streamlit
+        result_str_list = []
+        result_str_list.append(f"Unified Gene Cocktail Report: {self.dataset_name}\n")
+
         max_lengths = [max(len(str(item)) for item in column) for column in zip(*report_data)]
 
-        print(" | ".join(format(header, f"{length}s") for header, length in zip(headers, max_lengths)))
-        print("-" * sum(max_lengths) + "-" * (len(max_lengths) - 1) * 3)
+        result_str_list.append(" | ".join(format(header, f"{length}s") for header, length in zip(headers, max_lengths)))
+        result_str_list.append("-" * sum(max_lengths) + "-" * (len(max_lengths) - 1) * 3)
+
         for row in report_data:
-            print(" | ".join(format(str(item), f"{length}s") for item, length in zip(row, max_lengths)))
+            result_str_list.append(
+                " | ".join(format(str(item), f"{length}s") for item, length in zip(row, max_lengths)))
+
+        return result_str_list
+
 
 
     def plot_visualizations(self):
