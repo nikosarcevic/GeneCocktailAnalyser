@@ -200,21 +200,14 @@ class GeneCocktailAnalyser:
         report_data.extend(multiple_filter_ids_data)
 
         # Prepare the results for Streamlit
-        result_str_list = []
-        result_str_list.append(f"Unified Gene Cocktail Report: {self.dataset_name}\n")
-
+        output = []
+        output.append(f"Unified Gene Cocktail Report: {self.dataset_name}\n")
         max_lengths = [max(len(str(item)) for item in column) for column in zip(*report_data)]
-
-        result_str_list.append(" | ".join(format(header, f"{length}s") for header, length in zip(headers, max_lengths)))
-        result_str_list.append("-" * sum(max_lengths) + "-" * (len(max_lengths) - 1) * 3)
-
+        output.append(" | ".join(format(header, f"{length}s") for header, length in zip(headers, max_lengths)))
+        output.append("-" * sum(max_lengths) + "-" * (len(max_lengths) - 1) * 3)
         for row in report_data:
-            result_str_list.append(
-                " | ".join(format(str(item), f"{length}s") for item, length in zip(row, max_lengths)))
-
-        return result_str_list
-
-
+            output.append(" | ".join(format(str(item), f"{length}s") for item, length in zip(row, max_lengths)))
+        return output
 
     def plot_visualizations(self):
         self.plot_summary_data()
