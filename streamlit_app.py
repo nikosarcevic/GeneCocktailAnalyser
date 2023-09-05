@@ -1,5 +1,6 @@
 import base64
 from datetime import datetime
+import io
 import pandas as pd
 import streamlit as st
 import os
@@ -12,6 +13,13 @@ from gca_streamlit import GeneCocktailAnalyser
 def create_download_link(content: str, filename: str, link_label: str):
     b64 = base64.b64encode(content.encode()).decode()  # encode to base64
     return f'<a href="data:text/plain;base64,{b64}" download="{filename}">{link_label}</a>'
+
+def figure_to_base64(fig, format="png"):
+    """Converts a Matplotlib figure to a base64 encoded string in a given format."""
+    buf = io.BytesIO()
+    fig.savefig(buf, format=format)
+    buf.seek(0)
+    return base64.b64encode(buf.read()).decode()
 
 # Set the page layout to wide
 st.set_page_config(layout="wide")
@@ -70,12 +78,27 @@ if uploaded_cocktail and uploaded_filters:
 
             fig1 = analyser.plot_summary_data()
             st.pyplot(fig1, width=400, height=400)
+            encoded_fig1 = figure_to_base64(fig1)
+            plot1_filename = f"{filename_input}_summary_plot.png" if filename_input else "summary_plot.png"
+            st.markdown(
+                f'<a href="data:image/png;base64,{encoded_fig1}" download="{plot1_filename}">Download Summary Plot</a>',
+                unsafe_allow_html=True)
 
             fig2 = analyser.plot_frequency_of_matches()
             st.pyplot(fig2, width=400, height=400)
+            encoded_fig2 = figure_to_base64(fig2)
+            plot2_filename = f"{filename_input}_histogram.png" if filename_input else "histogram.png"
+            st.markdown(
+                f'<a href="data:image/png;base64,{encoded_fig2}" download="{plot2_filename}">Download Histogram Plot</a>',
+                unsafe_allow_html=True)
 
             fig3 = analyser.plot_heatmap()
             st.pyplot(fig3, width=400, height=400)
+            encoded_fig3 = figure_to_base64(fig3)
+            plot3_filename = f"{filename_input}_heatmap.png" if filename_input else "heatmap.png"
+            st.markdown(
+                f'<a href="data:image/png;base64,{encoded_fig3}" download="{plot3_filename}">Download Heatmap Plot</a>',
+                unsafe_allow_html=True)
 
         # Cleanup temporary files
         os.remove(temp_cocktail.name)
