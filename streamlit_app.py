@@ -48,13 +48,13 @@ if uploaded_cocktail and uploaded_filters:
             st.write("Plotting visualizations...")
 
             fig1 = analyser.plot_summary_data()
-            st.pyplot(fig1)
+            st.pyplot(fig1, width=400, height=400)
 
             fig2 = analyser.plot_frequency_of_matches()
-            st.pyplot(fig2)
+            st.pyplot(fig2, width=400, height=400)
 
             fig3 = analyser.plot_heatmap()
-            st.pyplot(fig3)
+            st.pyplot(fig3, width=400, height=400)
 
         # Cleanup temporary files
         os.remove(temp_cocktail.name)
