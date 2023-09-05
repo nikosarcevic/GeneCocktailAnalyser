@@ -1,9 +1,17 @@
-import streamlit as st
+import base64
+from datetime import datetime
 import pandas as pd
+import streamlit as st
 import os
 import tempfile
 import warnings
 from gca_streamlit import GeneCocktailAnalyser
+
+
+# Helper function to create a download link
+def create_download_link(content: str, filename: str, link_label: str):
+    b64 = base64.b64encode(content.encode()).decode()  # encode to base64
+    return f'<a href="data:text/plain;base64,{b64}" download="{filename}">{link_label}</a>'
 
 # Set the page layout to wide
 st.set_page_config(layout="wide")
@@ -16,6 +24,16 @@ st.title("Gene Cocktail Analyser")
 
 uploaded_cocktail = st.file_uploader("Upload Cocktail File (CSV)", type=["csv"])
 uploaded_filters = st.file_uploader("Upload Filters File (CSV)", type=["csv"])
+
+# Generate the report using the display_results method
+report_lines = GeneCocktailAnalyser.display_results()
+output_str = "\n".join(report_lines)
+
+# Allow user to provide a custom name for the report
+filename_input = st.text_input("Enter name for the report:", "")
+
+# If the user hasn't provided a name, generate a default one based on the current date and time
+filename = filename_input if filename_input else f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 
 if uploaded_cocktail and uploaded_filters:
 
@@ -38,11 +56,14 @@ if uploaded_cocktail and uploaded_filters:
         analyser.process_data()
         st.write("Uploaded files processed!")
 
-        if st.button("Display Results"):
-            st.write("Displaying results...")
-            results = analyser.display_results()
-            for line in results:
-                st.text(line)
+        # Button to download the report as a TXT file
+        if st.button("Download Report as TXT"):
+            link = create_download_link(output_str, filename, "Click here to download the report")
+            st.markdown(link, unsafe_allow_html=True)
+
+        # Another button to unveil/display the report on the Streamlit app
+        if st.button("Display Report"):
+            st.text(output_str)
 
         if st.button("Plot Visualizations"):
             st.write("Plotting visualizations...")
