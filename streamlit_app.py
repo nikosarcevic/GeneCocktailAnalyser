@@ -30,8 +30,6 @@ warnings.filterwarnings("ignore")
 # Streamlit app title
 st.title("Gene Cocktail Analyser")
 
-st.write("Made by Niko Sarcevic nikosarcevic.com for genetics coleagues")
-
 uploaded_cocktail = st.file_uploader("Upload Cocktail File (CSV)", type=["csv"])
 uploaded_filters = st.file_uploader("Upload Filters File (CSV)", type=["csv"])
 
