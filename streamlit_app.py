@@ -31,10 +31,10 @@ warnings.filterwarnings("ignore")
 st.title("Gene Cocktail Analyser")
 st.write("Made by Niko Sarcevic -- nikosarcevic.com")
 
-st.text("First phase of the app: note it works it is just not pretty."
-        "Make sure to just drag and drop your cocktail and filter files."
-        "Filter files should have a column with mutation codons."
-        "You can diplay the results and figs, save them to your machine")
+st.write("First phase of the app: note it works it is just not pretty.")
+st.write("Make sure to just drag and drop your cocktail and filter files.")
+st.write ("Filter files should have a column with mutation codons.")
+st.write("You can diplay the results and figs, save them to your machine")
 
 uploaded_cocktail = st.file_uploader("Upload Cocktail File (CSV)", type=["csv"])
 uploaded_filters = st.file_uploader("Upload Filters File (CSV)", type=["csv"])
