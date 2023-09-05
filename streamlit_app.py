@@ -46,10 +46,15 @@ if uploaded_cocktail and uploaded_filters:
 
         if st.button("Plot Visualizations"):
             st.write("Plotting visualizations...")
-            # Assuming plot_visualizations will create a plot using matplotlib or similar
-            # Update plot_visualizations to return the created figure
-            fig = analyser.plot_visualizations()
-            st.pyplot(fig)
+
+            fig1 = analyser.plot_summary_data()
+            st.pyplot(fig1)
+
+            fig2 = analyser.plot_frequency_of_matches()
+            st.pyplot(fig2)
+
+            fig3 = analyser.plot_heatmap()
+            st.pyplot(fig3)
 
         # Cleanup temporary files
         os.remove(temp_cocktail.name)

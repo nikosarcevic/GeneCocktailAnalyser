@@ -225,7 +225,7 @@ class GeneCocktailAnalyser:
         colors = sns.color_palette("viridis", len(sizes))
 
         # Plotting
-        plt.figure(figsize=(8, 8))
+        fig, ax = plt.subplots(figsize=(8, 8))
         wedges, texts, autotexts = plt.pie(sizes, labels=None, colors=colors, startangle=90,
                                            wedgeprops={'linewidth': 7, 'edgecolor': 'white'},
                                            autopct=lambda p: f'{p:.1f}%')  # Display percentages
@@ -242,10 +242,10 @@ class GeneCocktailAnalyser:
         plt.gca().add_artist(
             plt.Circle((0, 0), 0.70, color='white'))  # Draw a white circle at the center to create the donut hole
 
-        plt.title(f'{self.dataset_name} Summary Chart')
-        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.tight_layout()
-        plt.show()
+        ax.set_title(f'{self.dataset_name} Summary Chart')
+        ax.axis('equal')
+        fig.tight_layout()
+        return fig
 
     def plot_frequency_of_matches(self, include_codons=False):
         # Getting filter matches and sorting them by count
@@ -265,7 +265,7 @@ class GeneCocktailAnalyser:
         mutation_codons = sorted_filters_df[mutation_codon_col] if has_mutation_codon else []
 
         # Plotting
-        plt.figure(figsize=(10, 7))  # Adjust the figure size as needed
+        fig, ax = plt.subplots(figsize=(10, 7))
         bars = plt.bar(labels, values, color=sns.color_palette("viridis", len(labels)), alpha=0.7)
 
         if has_mutation_codon:
@@ -284,19 +284,13 @@ class GeneCocktailAnalyser:
 
             plt.ylim(0, y_limit)
 
-        plt.xlabel('Filters', fontsize=17, labelpad=10)
-        plt.ylabel('Number of Matches', fontsize=17)
-        plt.title(f'Frequency of Filter Matches for {self.dataset_name}', fontsize=20)
-        plt.xticks(rotation=45, ha='right', fontsize=12)  # Rotate x-axis labels at 45 degrees
-        plt.yticks(fontsize=12)
-        # Set the y-axis tick parameters to point inwards and remove x-axis ticks
-        plt.gca().tick_params(axis='y', direction='in', which='both', length=4)
-        plt.gca().tick_params(axis='x', which='both', bottom=False)  # This line removes the x-axis ticks
-
-        plt.tight_layout()
-        plt.grid(axis='y', linestyle='--', alpha=0.6)
-        plt.grid(False)  # Disable grids
-        plt.show()
+        ax.set_xlabel('Filters', fontsize=17, labelpad=10)
+        ax.set_ylabel('Number of Matches', fontsize=17)
+        ax.set_title(f'Frequency of Filter Matches for {self.dataset_name}', fontsize=20)
+        ax.tick_params(axis='y', direction='in', which='both', length=4)
+        ax.tick_params(axis='x', which='both', bottom=False)
+        fig.tight_layout()
+        return fig
 
     def plot_heatmap(self):
         """
@@ -331,7 +325,7 @@ class GeneCocktailAnalyser:
         mask[np.triu_indices_from(mask, k=1)] = True  # k=1 excludes the diagonal from the mask
 
         # Plotting the heatmap with the adjusted mask
-        plt.figure(figsize=(10, 8))
+        fig, ax = plt.subplots(figsize=(10, 8))
         heatmap = sns.heatmap(matrix, annot=True, cmap="viridis", xticklabels=all_filters,
                               yticklabels=all_filters, mask=mask,  # Use the adjusted mask
                               cbar_kws={'label': 'Co-occurrence count'})
@@ -340,5 +334,6 @@ class GeneCocktailAnalyser:
         heatmap.set_title("Filter Co-occurrences in Samples with Multiple Matches", fontsize=15)
         heatmap.set_xlabel("Filters", fontsize=15)
         heatmap.set_ylabel("Filters", fontsize=15)
+        fig.tight_layout()
 
-        plt.show()
+        return fig
