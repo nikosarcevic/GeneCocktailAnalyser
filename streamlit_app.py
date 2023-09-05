@@ -25,16 +25,6 @@ st.title("Gene Cocktail Analyser")
 uploaded_cocktail = st.file_uploader("Upload Cocktail File (CSV)", type=["csv"])
 uploaded_filters = st.file_uploader("Upload Filters File (CSV)", type=["csv"])
 
-# Generate the report using the display_results method
-report_lines = GeneCocktailAnalyser.display_results()
-output_str = "\n".join(report_lines)
-
-# Allow user to provide a custom name for the report
-filename_input = st.text_input("Enter name for the report:", "")
-
-# If the user hasn't provided a name, generate a default one based on the current date and time
-filename = filename_input if filename_input else f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-
 if uploaded_cocktail and uploaded_filters:
 
     with tempfile.TemporaryDirectory() as tmpdirname:
@@ -55,6 +45,16 @@ if uploaded_cocktail and uploaded_filters:
         analyser = GeneCocktailAnalyser(temp_cocktail.name, temp_filters.name)
         analyser.process_data()
         st.write("Uploaded files processed!")
+
+        # Generate the report using the display_results method
+        report_lines = analyser.display_results()
+        output_str = "\n".join(report_lines)
+
+        # Allow user to provide a custom name for the report
+        filename_input = st.text_input("Enter name for the report:", "")
+
+        # If the user hasn't provided a name, generate a default one based on the current date and time
+        filename = filename_input if filename_input else f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 
         # Button to download the report as a TXT file
         if st.button("Download Report as TXT"):
